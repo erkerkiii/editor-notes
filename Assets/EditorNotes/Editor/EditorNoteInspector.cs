@@ -33,14 +33,12 @@ namespace EditorNotes.Editor
             }
             else
             {
-                if (!GUILayout.Button("Create Notes", GUILayout.Height(50f)))
+                if (GUILayout.Button("Create Notes", GUILayout.Height(50f)))
                 {
-                    return;
+                    CreateNote();
+                    _note.content = "Start typing your notes here";
+                    SaveNote();
                 }
-                
-                CreateNote();
-                _note.content = "Start typing your notes here";
-                SaveNote();
             }
         }
         
@@ -108,6 +106,19 @@ namespace EditorNotes.Editor
         {
             _note = EditorNoteContainer.AddNote(GetTargetGameObject());
 
+            SaveScene();
+        }
+
+        [MenuItem("GameObject/Add Note", false, 9)]
+        public static void CreateNoteOnSelectedObject(MenuCommand menuCommand)
+        {
+            GameObject selectedGameObject = menuCommand.context as GameObject;
+            if (selectedGameObject == null)
+            {
+                return;
+            }
+            
+            EditorNoteContainer.AddNote(selectedGameObject);
             SaveScene();
         }
 

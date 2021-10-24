@@ -34,6 +34,11 @@ namespace EditorNotes
 
         public static Note Read(string objectUniqueId)
         {
+            if (string.IsNullOrEmpty(objectUniqueId))
+            {
+                return null;
+            }
+            
             string filePath = GetFilePath(objectUniqueId);
             if (!File.Exists(filePath))
             {
