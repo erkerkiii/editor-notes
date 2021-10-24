@@ -9,4 +9,6 @@ So every transform has this button on the bottom. Just click it and done! You ca
 
 ![image](https://user-images.githubusercontent.com/32206317/138553413-062ec6a6-93c1-4aa7-8225-93de2583eaeb.png)
 
-![image](https://user-images.githubusercontent.com/32206317/138600854-b8d05c54-f1b6-4e69-a47e-9796898407c2.png)
+![image](https://user-images.githubusercontent.com/32206317/138600899-066c3971-6efb-4a20-98ac-e6ac1e09bd79.png)
+
+![image](https://user-images.githubusercontent.com/32206317/138600904-c42814fa-596f-4d41-b931-9e8662cdd51c.png)
