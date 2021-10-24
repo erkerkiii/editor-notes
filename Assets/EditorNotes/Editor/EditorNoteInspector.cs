@@ -33,12 +33,14 @@ namespace EditorNotes.Editor
             }
             else
             {
-                if (GUILayout.Button("Create Notes", GUILayout.Height(50f)))
+                if (!GUILayout.Button("Create Notes", GUILayout.Height(50f)))
                 {
-                    CreateNote();
-                    _note.content = "Start typing your notes here";
-                    SaveNote();
+                    return;
                 }
+                
+                CreateNote();
+                _note.content = "Start typing your notes here";
+                SaveNote();
             }
         }
         
