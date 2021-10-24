@@ -1,3 +1,4 @@
+using System;
 using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
@@ -22,11 +23,11 @@ namespace EditorNotes.Editor
 
         public override void OnInspectorGUI()
         {
+            base.OnInspectorGUI();
+
             InitializeGUIStyle();
             CheckNotes();
             
-            base.OnInspectorGUI();
-
             if (_note != null)
             {
                 DrawTextArea();
@@ -41,7 +42,25 @@ namespace EditorNotes.Editor
                 }
             }
         }
-        
+
+        private void OnSceneGUI()
+        {
+            if (_note == null)
+            {
+                return;
+            }
+
+            string noteContent = _note.content;
+            
+            Handles.Label(GetTargetGameObject().transform.position, noteContent);
+            
+            Handles.BeginGUI();
+            
+            GUILayout.Box(noteContent);
+            
+            Handles.EndGUI();
+        }
+
         private void InitializeGUIStyle()
         {
             if (_guiStyle != null)
@@ -145,9 +164,10 @@ namespace EditorNotes.Editor
             {
                 return;
             }
+            
             _note?.Save();
         }
-        
+
         private void OnDisable()
         {
             SaveNote();

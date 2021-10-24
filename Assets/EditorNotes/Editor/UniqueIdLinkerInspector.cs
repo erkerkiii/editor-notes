@@ -20,7 +20,6 @@ namespace EditorNotes.Editor
             
             if (string.IsNullOrEmpty(_id))
             {
-                SerializedObject serializedObject = new SerializedObject(target);
                 _id = serializedObject.FindProperty("_id").stringValue;
             }
 

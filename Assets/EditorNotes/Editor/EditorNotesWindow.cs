@@ -36,6 +36,7 @@ namespace EditorNotes.Editor
             {
                 LoadObjectsWithNotes();
             }
+            
         }
         
         private void InitializeGUIStyle()
