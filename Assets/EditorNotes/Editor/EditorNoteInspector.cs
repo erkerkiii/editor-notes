@@ -1,3 +1,4 @@
+using System;
 using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
@@ -41,7 +42,15 @@ namespace EditorNotes.Editor
                 }
             }
         }
-        
+
+        private void OnSceneGUI()
+        {
+            if (_note != null)
+            {
+                Handles.Label(GetTargetGameObject().transform.position, _note?.content);
+            }
+        }
+
         private void InitializeGUIStyle()
         {
             if (_guiStyle != null)
@@ -147,7 +156,7 @@ namespace EditorNotes.Editor
             }
             _note?.Save();
         }
-        
+
         private void OnDisable()
         {
             SaveNote();
