@@ -23,11 +23,11 @@ namespace EditorNotes.Editor
 
         public override void OnInspectorGUI()
         {
+            base.OnInspectorGUI();
+
             InitializeGUIStyle();
             CheckNotes();
             
-            base.OnInspectorGUI();
-
             if (_note != null)
             {
                 DrawTextArea();
@@ -45,10 +45,20 @@ namespace EditorNotes.Editor
 
         private void OnSceneGUI()
         {
-            if (_note != null)
+            if (_note == null)
             {
-                Handles.Label(GetTargetGameObject().transform.position, _note?.content);
+                return;
             }
+
+            string noteContent = _note.content;
+            
+            Handles.Label(GetTargetGameObject().transform.position, noteContent);
+            
+            Handles.BeginGUI();
+            
+            GUILayout.Box(noteContent);
+            
+            Handles.EndGUI();
         }
 
         private void InitializeGUIStyle()
@@ -154,6 +164,7 @@ namespace EditorNotes.Editor
             {
                 return;
             }
+            
             _note?.Save();
         }
 

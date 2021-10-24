@@ -11,6 +11,11 @@ namespace EditorNotes
 
         public static void Write(string text, string objectUniqueId)
         {
+            if (string.IsNullOrEmpty(objectUniqueId))
+            {
+                return;
+            }
+            
             if (!Directory.Exists(DIRECTORY_PATH))
             {
                 try
