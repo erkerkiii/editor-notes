@@ -7,14 +7,14 @@ namespace EditorNotes
     {
         private static readonly Dictionary<string, Note> NoteRegistry = new Dictionary<string, Note>();
 
-        public static Note GetNote(string globalObjectId)
+        public static Note GetNote(string uniqueId)
         {
-            if (NoteRegistry.ContainsKey(globalObjectId))
+            if (NoteRegistry.ContainsKey(uniqueId))
             {
-                return NoteRegistry[globalObjectId];
+                return NoteRegistry[uniqueId];
             }
 
-            Note readNote = EditorNotesFileHandler.Read(globalObjectId);
+            Note readNote = EditorNotesFileHandler.Read(uniqueId);
             if (readNote != null)
             {
                 AddToRegistry(readNote);
@@ -34,7 +34,7 @@ namespace EditorNotes
 
         private static void AddToRegistry(Note note)
         {
-            if (NoteRegistry.ContainsKey(note.TargetObjectUniqueId))
+            if (NoteRegistry.ContainsKey(note.TargetObjectUniqueId) || string.IsNullOrEmpty(note.TargetObjectUniqueId))
             {
                 return;
             }
@@ -61,8 +61,7 @@ namespace EditorNotes
                     return null;
                 }
             }
-
-
+            
             Note note = CreateNewNote(gameObject);
             AddToRegistry(note);
 
